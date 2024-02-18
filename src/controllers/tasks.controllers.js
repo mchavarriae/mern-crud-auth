@@ -1,5 +1,5 @@
 import Task from "../models/task.model.js";
-
+import Task2 from "../models/task.js";
 export const getTasks = async (req, res) => {
   try {
     const tasks = await Task.find({ user : req.user.id }).populate("user");
@@ -20,6 +20,23 @@ export const createTask = async (req, res) => {
     });
     await newTask.save();
     res.json(newTask);
+  } catch (error) {
+    return res.status(500).json({ message: error.message });
+  }
+};
+
+export const createTask2 = async (req, res) => {
+  try {
+    const { title, description, date } = req.body;
+    let userId= "req.user.id";
+    const newTask = new Task2(
+      title,
+      description,
+      date,
+      userId
+    );
+    let saveResult = await newTask.save();
+    res.json(saveResult);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

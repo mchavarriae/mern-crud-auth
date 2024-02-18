@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createTask,
+  createTask2,
   deleteTask,
   getTask,
   getTasks,
@@ -21,5 +22,7 @@ router.get("/tasks/:id", auth, getTask);
 router.put("/tasks/:id", auth, updateTask);
 
 router.delete("/tasks/:id", auth, deleteTask);
+
+router.post('/task2', createTask2);
 
 export default router;
